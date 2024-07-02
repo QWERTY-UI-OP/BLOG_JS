@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Comment</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Edit Comment</h1>
+  </header>
+  <div class="container">
+    <form action="/comment/<%= comment.id %>/edit" method="post">
+      <input type="hidden" name="post_id" value="<%= comment.post_id %>">
+      <textarea name="content" required><%= comment.content %></textarea>
+      <button type="submit">Update Comment</button>
+    </form>
+    <a href="/post/<%= comment.post_id %>" class="back-link">Back to Post</a>
+  </div>
+</body>
+</html>

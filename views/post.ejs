@@ -2,10 +2,33 @@
 <html>
 <head>
   <title><%= post.title %></title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
-  <h1><%= post.title %></h1>
-  <p><%= post.content %></p>
-  <a href="/">Back to Posts</a>
+  <header>
+    <h1><%= post.title %></h1>
+  </header>
+  <div class="container">
+    <p><%= post.content %></p>
+    <p>Likes: <%= likeCount %></p>
+    <form action="/post/<%= post.id %>/like" method="post">
+      <button type="submit">Like</button>
+    </form>
+    <hr>
+    <h2>Comments</h2>
+    <ul>
+      <% comments.forEach(comment => { %>
+        <li>
+          <%= comment.content %> - <%= comment.created_at.toISOString().slice(0, 19).replace('T', ' ') %>
+          <a href="/comment/<%= comment.id %>/edit">Edit</a>
+        </li>
+      <% }) %>
+    </ul>
+    <form action="/post/<%= post.id %>/comment" method="post">
+      <textarea name="content" required></textarea>
+      <button type="submit">Add Comment</button>
+    </form>
+    <a href="/" class="back-link">Back to Posts</a>
+  </div>
 </body>
 </html>
